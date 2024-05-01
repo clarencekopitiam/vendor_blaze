@@ -267,9 +267,16 @@ PRODUCT_PACKAGES += \
 
 # SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    NexusLauncherRelease \
     Settings \
     SystemUI
+
+ifeq ($(TARGET_INCLUDE_PIXEL_LAUNCHER),true)
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    NexusLauncherRelease
+else
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep
+endif
 
 # Speed profile services and wifi-service to reduce RAM and storage
 PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
